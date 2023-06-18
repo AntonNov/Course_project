@@ -24,6 +24,7 @@ flutter:
   fonts:
     - family: Lato
       fonts:
+        - asset: assets/fonts/Lato/Lato-Bold.ttf
         - asset: assets/fonts/Lato/Lato-Regular.ttf
         
     - family: Inter

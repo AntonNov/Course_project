@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              top: 633,
+              bottom: 50,
               left: 30,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,13 +26,15 @@ class HomeScreen extends StatelessWidget {
                   const Text(
                     'Restaurant',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Lato',
-                        fontWeight: FontWeight.w900,
-                        fontSize: 40,
-                        letterSpacing: 1.37,
-                        fontStyle: FontStyle.italic),
+                      color: Colors.white,
+                      fontFamily: 'Lato-Bold',
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 40,
+                      letterSpacing: 1.37,
+                    ),
                   ),
+                  const SizedBox(width: 134, height: 2),
                   const Text(
                     'cheeza pizza',
                     style: TextStyle(
@@ -43,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                       letterSpacing: 0.63,
                     ),
                   ),
-                  const SizedBox(width: 16, height: 16),
+                  const SizedBox(width: 134, height: 16),
                   Container(
                     width: 170,
                     height: 35,
@@ -54,22 +56,21 @@ class HomeScreen extends StatelessWidget {
                     child: const Row(
                       children: [
                         SizedBox(width: 35, height: 35),
-                        Expanded(
-                          child: Text(
-                            'START ORDER',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Lato',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                              letterSpacing: 0.63,
-                            ),
+                        Text(
+                          'START ORDER',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Lato',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            letterSpacing: 0.33,
                           ),
                         ),
                         Icon(
                           Icons.chevron_right,
                           color: Color.fromRGBO(242, 242, 242, 1),
-                        )
+                        ),
+                        SizedBox(width: 15, height: 35),
                       ],
                     ),
                   )
