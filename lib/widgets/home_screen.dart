@@ -1,3 +1,4 @@
+import 'package:delivery_app/widgets/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -50,13 +51,18 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 206, height: 16),
-                  Container(
-                    width: 170,
-                    height: 35,
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(229, 41, 62, 1),
+                  MaterialButton(
+                    color: const Color.fromRGBO(229, 41, 62, 1),
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16.5),
                     ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MenuWidget()),
+                      );
+                    },
                     child: const Row(
                       children: [
                         SizedBox(width: 35, height: 35),
