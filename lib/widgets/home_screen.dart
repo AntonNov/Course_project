@@ -15,49 +15,63 @@ class HomeScreen extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            const Text(
-              'Restaurant',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Lato-Bold',
-                  fontSize: 40,
-                  fontStyle: FontStyle.italic),
-            ),
-            const Text(
-              'cheeza pizza',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Inter',
-                fontSize: 27,
-              ),
-            ),
-            const SizedBox(width: 18, height: 18),
-            Container(
-              width: 170,
-              height: 35,
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(229, 41, 62, 1),
-                borderRadius: BorderRadius.circular(16.5),
-              ),
-              child: const Row(
+            Positioned(
+              top: 633,
+              left: 30,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(width: 35, height: 35),
-                  Expanded(
-                    child: Text(
-                      'START ORDER',
-                      style: TextStyle(
+                  const Text(
+                    'Restaurant',
+                    style: TextStyle(
                         color: Colors.white,
-                        fontFamily: 'Lato-Regular',
-                        fontSize: 14,
-                      ),
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w900,
+                        fontSize: 40,
+                        letterSpacing: 1.37,
+                        fontStyle: FontStyle.italic),
+                  ),
+                  const Text(
+                    'cheeza pizza',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 27,
+                      letterSpacing: 0.63,
                     ),
                   ),
-                  Icon(
-                    Icons.chevron_right,
-                    color: Color.fromRGBO(242, 242, 242, 1),
+                  const SizedBox(width: 16, height: 16),
+                  Container(
+                    width: 170,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(229, 41, 62, 1),
+                      borderRadius: BorderRadius.circular(16.5),
+                    ),
+                    child: const Row(
+                      children: [
+                        SizedBox(width: 35, height: 35),
+                        Expanded(
+                          child: Text(
+                            'START ORDER',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              letterSpacing: 0.63,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.chevron_right,
+                          color: Color.fromRGBO(242, 242, 242, 1),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

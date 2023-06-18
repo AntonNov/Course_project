@@ -24,12 +24,10 @@ flutter:
   fonts:
     - family: Lato
       fonts:
-        - asset: assets/fonts/Lato/Lato-Bold.ttf
         - asset: assets/fonts/Lato/Lato-Regular.ttf
-          weight: 900 
+        
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter/Inter-Regular.otf
-          weight: 400 
 
 
