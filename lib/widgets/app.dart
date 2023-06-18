@@ -8,7 +8,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
-          fontFamily: 'Lato',
+          fontFamily: 'Lato-Regular',
         ),
         home: const HomeScreen());
   }

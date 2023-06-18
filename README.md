@@ -1,3 +1,3 @@
 # delivery_app
 
-A new Flutter project.
+Delivery app from Flutter course

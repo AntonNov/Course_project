@@ -1,5 +1,5 @@
 name: delivery_app
-description: A new Flutter project.
+description: Delivery app from Flutter course
 publish_to: 'none'
 version: 0.1.0
 
@@ -24,8 +24,8 @@ flutter:
   fonts:
     - family: Lato
       fonts:
-        - asset: assets/fonts/Lato/Lato-Bold.ttf
         - asset: assets/fonts/Lato/Lato-Regular.ttf
+        - asset: assets/fonts/Lato/Lato-BlackItalic.ttf
         
     - family: Inter
       fonts:

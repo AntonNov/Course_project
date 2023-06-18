@@ -5,6 +5,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final widthRatio = 30 / 375 * screenWidth;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final heightRatio = 50 / 812 * screenHeight;
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -18,8 +22,8 @@ class HomeScreen extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              bottom: 50,
-              left: 30,
+              bottom: heightRatio,
+              left: widthRatio,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -27,14 +31,14 @@ class HomeScreen extends StatelessWidget {
                     'Restaurant',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Lato-Bold',
+                      fontFamily: 'Lato-BlackItalic',
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.w900,
                       fontSize: 40,
                       letterSpacing: 1.37,
                     ),
                   ),
-                  const SizedBox(width: 134, height: 2),
+                  const SizedBox(width: 206, height: 2),
                   const Text(
                     'cheeza pizza',
                     style: TextStyle(
@@ -45,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                       letterSpacing: 0.63,
                     ),
                   ),
-                  const SizedBox(width: 134, height: 16),
+                  const SizedBox(width: 206, height: 16),
                   Container(
                     width: 170,
                     height: 35,
@@ -60,17 +64,16 @@ class HomeScreen extends StatelessWidget {
                           'START ORDER',
                           style: TextStyle(
                             color: Colors.white,
-                            fontFamily: 'Lato',
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
                             letterSpacing: 0.33,
                           ),
                         ),
+                        SizedBox(width: 14.5, height: 35),
                         Icon(
                           Icons.chevron_right,
                           color: Color.fromRGBO(242, 242, 242, 1),
                         ),
-                        SizedBox(width: 15, height: 35),
                       ],
                     ),
                   )
