@@ -12,12 +12,10 @@ class HomeScreen extends StatelessWidget {
     final heightRatio = 50 / 812 * screenHeight;
     return Scaffold(
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/home/background.jpg'),
-            fit: BoxFit.fill,
+            image: AssetImage('assets/images/home/background/background.png'),
+            fit: BoxFit.cover,
           ),
         ),
         child: Stack(
@@ -60,7 +58,8 @@ class HomeScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MenuWidget()),
+                          builder: (context) => const MenuScreen(),
+                        ),
                       );
                     },
                     child: const Row(
