@@ -66,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: const Row(
                       children: [
-                        SizedBox(width: 35, height: 35),
+                        SizedBox(width: 25, height: 35),
                         Text(
                           'START ORDER',
                           style: TextStyle(
@@ -76,11 +76,10 @@ class HomeScreen extends StatelessWidget {
                             letterSpacing: 0.33,
                           ),
                         ),
-                        SizedBox(width: 14.5, height: 35),
-                        Icon(
-                          Icons.chevron_right,
-                          color: Color.fromRGBO(242, 242, 242, 1),
-                        ),
+                        SizedBox(width: 15.5, height: 35),
+                        Image(
+                          image: AppImages.chevronRight,
+                        )
                       ],
                     ),
                   )
