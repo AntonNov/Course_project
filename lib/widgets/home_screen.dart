@@ -1,4 +1,6 @@
 import 'package:delivery_app/widgets/menu_screen.dart';
+import 'package:delivery_app/images.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,7 +16,7 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/home/background/background.png'),
+            image: AppImages.homeBackground,
             fit: BoxFit.cover,
           ),
         ),
