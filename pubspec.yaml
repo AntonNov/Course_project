@@ -1,7 +1,7 @@
 name: delivery_app
 description: Delivery app from Flutter course
 publish_to: 'none'
-version: 0.3.0
+version: 0.4.0
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -29,14 +29,13 @@ flutter:
     - assets/images/home/chevron_right/
     - assets/images/menu/menuicon/
     - assets/images/menu/bag/fill/
-    
-
-    
+        
     - assets/fonts/
   fonts:
     - family: Lato
       fonts:
         - asset: assets/fonts/Lato/Lato-Regular.ttf
+        - asset: assets/fonts/Lato/Lato-Black.ttf
         - asset: assets/fonts/Lato/Lato-BlackItalic.ttf
         
     - family: Inter

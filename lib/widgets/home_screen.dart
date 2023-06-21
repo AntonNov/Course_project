@@ -32,7 +32,6 @@ class HomeScreen extends StatelessWidget {
                   const Text(
                     'Restaurant',
                     style: TextStyle(
-                      color: Colors.white,
                       fontFamily: 'Lato-BlackItalic',
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.w900,
@@ -44,7 +43,6 @@ class HomeScreen extends StatelessWidget {
                   const Text(
                     'cheeza pizza',
                     style: TextStyle(
-                      color: Colors.white,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w400,
                       fontSize: 27,
@@ -67,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: const Row(
                       children: [
-                        SizedBox(width: 25, height: 35),
+                        SizedBox(width: 20, height: 35),
                         Text(
                           'START ORDER',
                           style: TextStyle(

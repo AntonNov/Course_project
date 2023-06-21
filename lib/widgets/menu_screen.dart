@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:delivery_app/widgets/pizza._screen.dart';
+import 'package:delivery_app/widgets/bag_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../custom_classes/category.dart';
@@ -13,6 +13,18 @@ class MenuScreen extends StatefulWidget {
 }
 
 class MenuScreenState extends State<MenuScreen> {
+  List<Category> categories = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData().then((value) {
+      setState(() {
+        categories = value;
+      });
+    });
+  }
+
   Widget makeCategoryWidget({required String path, required String category}) {
     return Stack(children: [
       Image.network(
@@ -27,7 +39,6 @@ class MenuScreenState extends State<MenuScreen> {
         child: Text(
           category,
           style: const TextStyle(
-            color: Colors.white,
             fontFamily: 'Lato-BlackItalic',
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.w900,
@@ -43,21 +54,10 @@ class MenuScreenState extends State<MenuScreen> {
     List<Widget> children = [];
     for (var category in categories) {
       children.add(
-          makeCategoryWidget(path: category.image, category: category.name));
+        makeCategoryWidget(path: category.image, category: category.name),
+      );
     }
     return children;
-  }
-
-  List<Category> categories = [];
-
-  @override
-  void initState() {
-    super.initState();
-    fetchData().then((value) {
-      setState(() {
-        categories = value;
-      });
-    });
   }
 
   Future<List<Category>> fetchData() async {
@@ -80,12 +80,6 @@ class MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = [];
-    for (var category in categories) {
-      Widget temp =
-          makeCategoryWidget(path: category.image, category: category.name);
-      children.add(temp);
-    }
     return Scaffold(
       body: Stack(
         children: [
@@ -102,14 +96,41 @@ class MenuScreenState extends State<MenuScreen> {
           Positioned(
             top: 61,
             right: 15,
+            child: MaterialButton(
+              shape: const CircleBorder(),
+              color: const Color.fromRGBO(229, 41, 62, 1),
+              child: const Image(image: AppImages.fill),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BagScreen(),
+                  ),
+                );
+              },
+            ),
+          ),
+          Positioned(
+            top: 60,
+            right: 34,
             child: Container(
-              width: 40,
-              height: 40,
+              width: 16,
+              height: 16,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color.fromRGBO(229, 41, 62, 1),
+                color: Color.fromRGBO(225, 193, 7, 1),
               ),
-              child: const Image(image: AppImages.fill),
+              child: const Center(
+                child: Text(
+                  '1',
+                  style: TextStyle(
+                    fontFamily: 'Lato-Black',
+                    fontWeight: FontWeight.w900,
+                    fontSize: 6,
+                    letterSpacing: 0.14,
+                  ),
+                ),
+              ),
             ),
           ),
         ],

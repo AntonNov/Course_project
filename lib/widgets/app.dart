@@ -9,6 +9,8 @@ class App extends StatelessWidget {
     return MaterialApp(
         theme: ThemeData(
           fontFamily: 'Lato-Regular',
+          textTheme:
+              const TextTheme(bodyMedium: TextStyle(color: Colors.white)),
         ),
         home: const HomeScreen());
   }
