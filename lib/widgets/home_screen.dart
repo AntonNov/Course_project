@@ -1,5 +1,5 @@
 import 'package:delivery_app/widgets/menu_screen.dart';
-import 'package:delivery_app/images.dart';
+import 'package:delivery_app/custom_classes/images.dart';
 
 import 'package:flutter/material.dart';
 

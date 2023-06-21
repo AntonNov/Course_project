@@ -1,41 +1,82 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../custom_classes/category.dart';
 
-Widget makeCategoryWidget({required String path}) {
-  return Image.network(
-    path,
-    height: 250,
-    fit: BoxFit.cover,
-  );
+Widget makeCategoryWidget({required String path, required String category}) {
+  return Stack(children: [
+    Image.network(
+      path,
+      height: 250,
+      width: double.infinity,
+      fit: BoxFit.cover,
+    ),
+    Positioned(
+      bottom: 21,
+      right: 22,
+      child: Text(
+        category,
+        style: const TextStyle(
+          color: Colors.white,
+          fontFamily: 'Lato-BlackItalic',
+          fontStyle: FontStyle.italic,
+          fontWeight: FontWeight.w900,
+          fontSize: 26,
+          letterSpacing: 1.61,
+        ),
+      ),
+    ),
+  ]);
 }
 
-List<Widget> makeCategoriesWidget() {
-  return [
-    makeCategoryWidget(
-        path:
-            'https://media.istockphoto.com/id/1377372234/es/foto/pizza-con-salami-pimiento-tomates-y-queso-encurtidos-tocino-y-salchichas-sobre-un-fondo-ligero.jpg?s=612x612&w=0&k=20&c=mEKMbrhjixwgGcdrq7Jm-E5wyhBfinRbGbCc8__y4Fs='),
-    makeCategoryWidget(
-        path:
-            "https://media.istockphoto.com/id/1407982559/es/foto/espaguetis-o-linguine-con-carne-y-salsa-de-tomate-bolo%C3%B1esa-sobre-un-plato-negro-y-fondo-oscuro.jpg?s=612x612&w=0&k=20&c=vafB1q9tM0IfRzToK0Qkd-56IY4D5ts8xCemP1EZdLY="),
-    makeCategoryWidget(
-        path:
-            'https://media.istockphoto.com/id/1343569460/es/foto/un-taz%C3%B3n-blanco-de-ensalada-c%C3%A9sar-fotograf%C3%ADa.jpg?s=612x612&w=0&k=20&c=dW3ZRiJKx6R6Uu5Cn4OubAc6cVyScVB_ZSjqmXN1jfE='),
-    makeCategoryWidget(
-        path:
-            'https://media.istockphoto.com/id/1447673516/es/foto/pud%C3%ADn-de-caramelo-en-crema-con-salsa-de-caramelo-en-el-plato.jpg?s=612x612&w=0&k=20&c=LYhER_lGMKpr1p7UcSOY2EQHQDVKIGmErcLvNZYhBTk='),
-    makeCategoryWidget(
-        path:
-            'https://media.istockphoto.com/id/1368679348/es/foto/gafas-de-refresco.jpg?s=612x612&w=0&k=20&c=6TVyvO3a0Uj-RzTj4QryP4IGE0SdVQpyiLDzDxFdMuk=')
-  ];
-}
-
-class MenuScreen extends StatelessWidget {
+class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
 
   @override
+  MenuScreenState createState() => MenuScreenState();
+}
+
+class MenuScreenState extends State<MenuScreen> {
+  List<Category> categories = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData().then((value) {
+      setState(() {
+        categories = value;
+      });
+    });
+  }
+
+  Future<List<Category>> fetchData() async {
+    final response = await http.get(
+      Uri.parse(
+          'https://raw.githubusercontent.com/alex-shinkevich/tms_api/main/project-10/categories.json'),
+    );
+
+    if (response.statusCode == 200) {
+      final jsonData = json.decode(response.body) as List<dynamic>;
+      List<Category> categories = [];
+      for (var category in jsonData) {
+        categories.add(Category.fromJson(category));
+      }
+      return categories;
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    List<Widget> children = [];
+    for (var category in categories) {
+      children.add(
+          makeCategoryWidget(path: category.image, category: category.name));
+    }
     return Scaffold(
       body: ListView(
-        children: makeCategoriesWidget(),
+        children: children,
       ),
     );
   }
