@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
     final heightRatio = 50 / 812 * screenHeight;
     return Scaffold(
       body: Container(
+        //TODO add gradient
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AppImages.homeBackground,

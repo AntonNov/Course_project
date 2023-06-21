@@ -1,33 +1,9 @@
 import 'dart:convert';
+import 'package:delivery_app/widgets/pizza._screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../custom_classes/category.dart';
-
-Widget makeCategoryWidget({required String path, required String category}) {
-  return Stack(children: [
-    Image.network(
-      path,
-      height: 250,
-      width: double.infinity,
-      fit: BoxFit.cover,
-    ),
-    Positioned(
-      bottom: 21,
-      right: 22,
-      child: Text(
-        category,
-        style: const TextStyle(
-          color: Colors.white,
-          fontFamily: 'Lato-BlackItalic',
-          fontStyle: FontStyle.italic,
-          fontWeight: FontWeight.w900,
-          fontSize: 26,
-          letterSpacing: 1.61,
-        ),
-      ),
-    ),
-  ]);
-}
+import '../custom_classes/images.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -37,6 +13,41 @@ class MenuScreen extends StatefulWidget {
 }
 
 class MenuScreenState extends State<MenuScreen> {
+  Widget makeCategoryWidget({required String path, required String category}) {
+    return Stack(children: [
+      Image.network(
+        path,
+        height: 250,
+        width: double.infinity,
+        fit: BoxFit.cover,
+      ),
+      Positioned(
+        bottom: 21,
+        right: 22,
+        child: Text(
+          category,
+          style: const TextStyle(
+            color: Colors.white,
+            fontFamily: 'Lato-BlackItalic',
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w900,
+            fontSize: 26,
+            letterSpacing: 1.61,
+          ),
+        ),
+      ),
+    ]);
+  }
+
+  List<Widget> makeCategoriesWidget() {
+    List<Widget> children = [];
+    for (var category in categories) {
+      children.add(
+          makeCategoryWidget(path: category.image, category: category.name));
+    }
+    return children;
+  }
+
   List<Category> categories = [];
 
   @override
@@ -56,7 +67,7 @@ class MenuScreenState extends State<MenuScreen> {
     );
 
     if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body) as List<dynamic>;
+      final jsonData = jsonDecode(response.body) as List<dynamic>;
       List<Category> categories = [];
       for (var category in jsonData) {
         categories.add(Category.fromJson(category));
@@ -71,12 +82,37 @@ class MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     List<Widget> children = [];
     for (var category in categories) {
-      children.add(
-          makeCategoryWidget(path: category.image, category: category.name));
+      Widget temp =
+          makeCategoryWidget(path: category.image, category: category.name);
+      children.add(temp);
     }
     return Scaffold(
-      body: ListView(
-        children: children,
+      body: Stack(
+        children: [
+          ListView(
+            children: makeCategoriesWidget(),
+          ),
+          const Positioned(
+            top: 61,
+            left: 15,
+            child: Image(
+              image: AppImages.menuIcon,
+            ),
+          ),
+          Positioned(
+            top: 61,
+            right: 15,
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color.fromRGBO(229, 41, 62, 1),
+              ),
+              child: const Image(image: AppImages.fill),
+            ),
+          ),
+        ],
       ),
     );
   }
