@@ -29,6 +29,8 @@ flutter:
     - assets/images/home/chevron_right/
     - assets/images/menu/menuicon/
     - assets/images/menu/bag/fill/
+    - assets/images/bag/chevron_left/
+    - assets/images/bag/background/
         
     - assets/fonts/
   fonts:
@@ -37,6 +39,7 @@ flutter:
         - asset: assets/fonts/Lato/Lato-Regular.ttf
         - asset: assets/fonts/Lato/Lato-Black.ttf
         - asset: assets/fonts/Lato/Lato-BlackItalic.ttf
+        - asset: assets/fonts/Lato/Lato-Bold.ttf
         
     - family: Inter
       fonts:

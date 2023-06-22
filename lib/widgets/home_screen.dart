@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
     final heightRatio = 50 / 812 * screenHeight;
     return Scaffold(
       body: Container(
-        //TODO add gradient
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AppImages.homeBackground,
@@ -39,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                       letterSpacing: 1.37,
                     ),
                   ),
-                  const SizedBox(width: 206, height: 2),
+                  const SizedBox(height: 2),
                   const Text(
                     'cheeza pizza',
                     style: TextStyle(
@@ -49,8 +48,10 @@ class HomeScreen extends StatelessWidget {
                       letterSpacing: 0.63,
                     ),
                   ),
-                  const SizedBox(width: 206, height: 16),
+                  const SizedBox(height: 16),
                   MaterialButton(
+                    minWidth: 170,
+                    height: 35,
                     color: const Color.fromRGBO(229, 41, 62, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16.5),
@@ -65,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: const Row(
                       children: [
-                        SizedBox(width: 20, height: 35),
+                        SizedBox(width: 18),
                         Text(
                           'START ORDER',
                           style: TextStyle(
@@ -75,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                             letterSpacing: 0.33,
                           ),
                         ),
-                        SizedBox(width: 15.5, height: 35),
+                        SizedBox(width: 17),
                         Image(
                           image: AppImages.chevronRight,
                         )

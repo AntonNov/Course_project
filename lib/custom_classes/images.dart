@@ -8,4 +8,8 @@ abstract class AppImages {
   static const menuIcon =
       AssetImage('assets/images/menu/menuicon/menuicon.png');
   static const fill = AssetImage('assets/images/menu/bag/fill/fill.png');
+  static const chevronLeft =
+      AssetImage('assets/images/bag/chevron_left/chevron_left.png');
+  static const bagBackground =
+      AssetImage('assets/images/bag/background/background.png');
 }

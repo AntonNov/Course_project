@@ -26,28 +26,30 @@ class MenuScreenState extends State<MenuScreen> {
   }
 
   Widget makeCategoryWidget({required String path, required String category}) {
-    return Stack(children: [
-      Image.network(
-        path,
-        height: 250,
-        width: double.infinity,
-        fit: BoxFit.cover,
-      ),
-      Positioned(
-        bottom: 21,
-        right: 22,
-        child: Text(
-          category,
-          style: const TextStyle(
-            fontFamily: 'Lato-BlackItalic',
-            fontStyle: FontStyle.italic,
-            fontWeight: FontWeight.w900,
-            fontSize: 26,
-            letterSpacing: 1.61,
+    return Stack(
+      children: [
+        Image.network(
+          path,
+          height: 250,
+          width: double.infinity,
+          fit: BoxFit.cover,
+        ),
+        Positioned(
+          bottom: 21,
+          right: 22,
+          child: Text(
+            category,
+            style: const TextStyle(
+              fontFamily: 'Lato-BlackItalic',
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w900,
+              fontSize: 26,
+              letterSpacing: 1.61,
+            ),
           ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 
   List<Widget> makeCategoriesWidget() {
@@ -97,6 +99,8 @@ class MenuScreenState extends State<MenuScreen> {
             top: 61,
             right: 15,
             child: MaterialButton(
+              minWidth: 40,
+              height: 40,
               shape: const CircleBorder(),
               color: const Color.fromRGBO(229, 41, 62, 1),
               child: const Image(image: AppImages.fill),
@@ -112,7 +116,7 @@ class MenuScreenState extends State<MenuScreen> {
           ),
           Positioned(
             top: 60,
-            right: 34,
+            right: 16,
             child: Container(
               width: 16,
               height: 16,
