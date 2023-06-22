@@ -7,13 +7,16 @@ class BagScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+        body: Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AppImages.bagBackground,
+          fit: BoxFit.contain,
+          alignment: Alignment.topCenter,
+        ),
+      ),
+      child: Stack(
         children: [
-          const Image(
-            width: double.infinity,
-            image: AppImages.bagBackground,
-            fit: BoxFit.cover,
-          ),
           Positioned(
             left: 15,
             top: 60,
@@ -24,8 +27,9 @@ class BagScreen extends StatelessWidget {
                   height: 40,
                   shape: const CircleBorder(),
                   color: const Color.fromRGBO(229, 41, 62, 1),
-                  child:
-                      const Center(child: Image(image: AppImages.chevronLeft)),
+                  child: const Center(
+                    child: Image(image: AppImages.chevronLeft),
+                  ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -47,6 +51,6 @@ class BagScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }

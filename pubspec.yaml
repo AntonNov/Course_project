@@ -31,6 +31,7 @@ flutter:
     - assets/images/menu/bag/fill/
     - assets/images/bag/chevron_left/
     - assets/images/bag/background/
+    - assets/images/pizza/
         
     - assets/fonts/
   fonts:

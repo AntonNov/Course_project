@@ -1,4 +1,3 @@
-import 'package:delivery_app/widgets/menu_screen.dart';
 import 'package:delivery_app/custom_classes/images.dart';
 
 import 'package:flutter/material.dart';
@@ -57,12 +56,7 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16.5),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MenuScreen(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/menu');
                     },
                     child: const Row(
                       children: [

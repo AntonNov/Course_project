@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:delivery_app/widgets/bag_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../custom_classes/category.dart';
@@ -26,29 +25,34 @@ class MenuScreenState extends State<MenuScreen> {
   }
 
   Widget makeCategoryWidget({required String path, required String category}) {
-    return Stack(
-      children: [
-        Image.network(
-          path,
-          height: 250,
-          width: double.infinity,
-          fit: BoxFit.cover,
-        ),
-        Positioned(
-          bottom: 21,
-          right: 22,
-          child: Text(
-            category,
-            style: const TextStyle(
-              fontFamily: 'Lato-BlackItalic',
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w900,
-              fontSize: 26,
-              letterSpacing: 1.61,
+    return GestureDetector(
+      child: Stack(
+        children: [
+          Image.network(
+            path,
+            height: 250,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Positioned(
+            bottom: 21,
+            right: 22,
+            child: Text(
+              category,
+              style: const TextStyle(
+                fontFamily: 'Lato-BlackItalic',
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w900,
+                fontSize: 26,
+                letterSpacing: 1.61,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
+      onTap: () {
+        Navigator.pushNamed(context, '/pizza');
+      },
     );
   }
 
@@ -105,12 +109,7 @@ class MenuScreenState extends State<MenuScreen> {
               color: const Color.fromRGBO(229, 41, 62, 1),
               child: const Image(image: AppImages.fill),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const BagScreen(),
-                  ),
-                );
+                Navigator.pushNamed(context, '/bag');
               },
             ),
           ),
