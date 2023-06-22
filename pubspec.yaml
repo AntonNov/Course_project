@@ -1,7 +1,7 @@
 name: delivery_app
 description: Delivery app from Flutter course
 publish_to: 'none'
-version: 0.4.0
+version: 0.5.0
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -31,7 +31,8 @@ flutter:
     - assets/images/menu/bag/fill/
     - assets/images/bag/chevron_left/
     - assets/images/bag/background/
-    - assets/images/pizza/
+    - assets/images/pizza/background/
+    - assets/images/pizza/star_grey/
         
     - assets/fonts/
   fonts:

@@ -14,13 +14,13 @@ class App extends StatelessWidget {
         fontFamily: 'Lato-Regular',
         textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.white)),
       ),
+      initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
         '/menu': (context) => const MenuScreen(),
         '/bag': (context) => const BagScreen(),
         '/pizza': (context) => const PizzaScreen(),
       },
-      initialRoute: '/',
     );
   }
 }

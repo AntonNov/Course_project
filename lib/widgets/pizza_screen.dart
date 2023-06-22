@@ -41,59 +41,6 @@ class PizzaScreenState extends State<PizzaScreen> {
     }
   }
 
-  Widget makePizzaWidget(
-      {required String photo,
-      required String name,
-      required double priceL,
-      required double priceM}) {
-    const blackColor = Color.fromRGBO(11, 32, 49, 1);
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.white.withOpacity(0.13),
-                blurRadius: 20,
-              ),
-            ],
-          ),
-          child: const Image(
-            image: AppImages.pizzaBackground,
-            height: 170,
-            width: 255,
-            // fit: BoxFit.fill,
-          ),
-        ),
-        Image.network(
-          photo,
-        ),
-        Column(
-          children: [
-            Text(
-              name,
-              style: const TextStyle(
-                color: blackColor,
-              ),
-            ),
-            Text(
-              priceL.toString(),
-              style: const TextStyle(
-                color: blackColor,
-              ),
-            ),
-            Text(
-              priceM.toString(),
-              style: const TextStyle(
-                color: blackColor,
-              ),
-            )
-          ],
-        ),
-      ],
-    );
-  }
-
   List<Widget> makePizzasWidget() {
     List<Widget> children = [];
     for (var pizza in pizzas) {
@@ -111,81 +58,142 @@ class PizzaScreenState extends State<PizzaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AppImages.bagBackground,
-            fit: BoxFit.contain,
-            alignment: Alignment.topCenter,
+      body: Stack(
+        children: [
+          const Positioned(
+            top: 61,
+            left: 15,
+            child: Image(
+              image: AppImages.menuIcon,
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            const Positioned(
-              top: 61,
-              left: 15,
-              child: Image(
-                image: AppImages.menuIcon,
-              ),
+          Positioned(
+            top: 61,
+            right: 15,
+            child: MaterialButton(
+              minWidth: 40,
+              height: 40,
+              shape: const CircleBorder(),
+              color: const Color.fromRGBO(229, 41, 62, 1),
+              child: const Image(image: AppImages.fill),
+              onPressed: () {
+                Navigator.pushNamed(context, '/bag');
+              },
             ),
-            Positioned(
-              top: 61,
-              right: 15,
-              child: MaterialButton(
-                minWidth: 40,
-                height: 40,
-                shape: const CircleBorder(),
-                color: const Color.fromRGBO(229, 41, 62, 1),
-                child: const Image(image: AppImages.fill),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/bag');
-                },
+          ),
+          Positioned(
+            top: 60,
+            right: 16,
+            child: Container(
+              width: 16,
+              height: 16,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color.fromRGBO(225, 193, 7, 1),
               ),
-            ),
-            Positioned(
-              top: 60,
-              right: 16,
-              child: Container(
-                width: 16,
-                height: 16,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromRGBO(225, 193, 7, 1),
-                ),
-                child: const Center(
-                  child: Text(
-                    '1',
-                    style: TextStyle(
-                      fontFamily: 'Lato-Black',
-                      fontWeight: FontWeight.w900,
-                      fontSize: 6,
-                      letterSpacing: 0.14,
-                    ),
+              child: const Center(
+                child: Text(
+                  '1',
+                  style: TextStyle(
+                    fontFamily: 'Lato-Black',
+                    fontWeight: FontWeight.w900,
+                    fontSize: 6,
+                    letterSpacing: 0.14,
                   ),
                 ),
               ),
             ),
-            const Positioned(
-              top: 63,
-              left: 160,
-              child: Text(
-                'PIZZA',
-                style: TextStyle(
-                  fontFamily: 'Lato-Bold',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 26,
-                  letterSpacing: 1.61,
+          ),
+          const Positioned(
+            top: 63,
+            left: 160,
+            child: Text(
+              'PIZZA',
+              style: TextStyle(
+                fontFamily: 'Lato-Bold',
+                fontWeight: FontWeight.w700,
+                fontSize: 26,
+                letterSpacing: 1.61,
+              ),
+            ),
+          ),
+          Positioned(
+            child: ListView(
+              children: makePizzasWidget(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget makePizzaWidget(
+      {required String photo,
+      required String name,
+      required double priceL,
+      required double priceM}) {
+    return Center(
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.13),
+                  blurRadius: 20,
                 ),
-              ),
+              ],
             ),
-            Positioned(
-              // top: 50,
-              child: ListView(
-                children: makePizzasWidget(),
-              ),
+            child: const Image(
+              image: AppImages.pizzaBackground,
+              height: 200,
+              width: 255,
+              fit: BoxFit.fill,
             ),
-          ],
-        ),
+          ),
+          Positioned(
+            left: 50,
+            child: Column(
+              children: [
+                Text(
+                  name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Color.fromRGBO(11, 32, 49, 1),
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.253,
+                  ),
+                ),
+                Image.network(
+                  photo,
+                  width: 123,
+                  height: 119,
+                  fit: BoxFit.contain,
+                ),
+                const Row(
+                  children: [
+                    Image(
+                      image: AppImages.starGrey,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
+                ),
+                Text(
+                  'Size L \$$priceL',
+                  style: const TextStyle(
+                    color: Color.fromRGBO(112, 110, 123, 1),
+                  ),
+                ),
+                Text(
+                  'Size M \$$priceM',
+                  style: const TextStyle(
+                    color: Color.fromRGBO(11, 32, 49, 1),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -24,12 +24,12 @@ class MenuScreenState extends State<MenuScreen> {
     });
   }
 
-  Widget makeCategoryWidget({required String path, required String category}) {
+  Widget makeCategoryWidget({required String image, required String category}) {
     return GestureDetector(
       child: Stack(
         children: [
           Image.network(
-            path,
+            image,
             height: 250,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -60,7 +60,7 @@ class MenuScreenState extends State<MenuScreen> {
     List<Widget> children = [];
     for (var category in categories) {
       children.add(
-        makeCategoryWidget(path: category.image, category: category.name),
+        makeCategoryWidget(image: category.image, category: category.name),
       );
     }
     return children;
