@@ -33,7 +33,7 @@ flutter:
     - assets/images/bag/background/
     - assets/images/pizza/background/
     - assets/images/pizza/star_grey/
-        
+    
     - assets/fonts/
   fonts:
     - family: Lato

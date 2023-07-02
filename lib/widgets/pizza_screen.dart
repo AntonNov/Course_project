@@ -32,7 +32,7 @@ class PizzaScreenState extends State<PizzaScreen> {
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body) as List<dynamic>;
       List<Pizza> pizzas = [];
-      for (var pizza in jsonData) {
+      for (final pizza in jsonData) {
         pizzas.add(Pizza.fromJson(pizza));
       }
       return pizzas;
@@ -43,7 +43,7 @@ class PizzaScreenState extends State<PizzaScreen> {
 
   List<Widget> makePizzasWidget() {
     List<Widget> children = [];
-    for (var pizza in pizzas) {
+    for (final pizza in pizzas) {
       children.add(
         makePizzaWidget(
             photo: pizza.photo,
@@ -110,6 +110,7 @@ class PizzaScreenState extends State<PizzaScreen> {
             child: Text(
               'PIZZA',
               style: TextStyle(
+                fontStyle: FontStyle.normal,
                 fontFamily: 'Lato-Bold',
                 fontWeight: FontWeight.w700,
                 fontSize: 26,

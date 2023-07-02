@@ -58,7 +58,7 @@ class MenuScreenState extends State<MenuScreen> {
 
   List<Widget> makeCategoriesWidget() {
     List<Widget> children = [];
-    for (var category in categories) {
+    for (final category in categories) {
       children.add(
         makeCategoryWidget(image: category.image, category: category.name),
       );
@@ -87,56 +87,27 @@ class MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          ListView(
-            children: makeCategoriesWidget(),
-          ),
-          const Positioned(
-            top: 61,
-            left: 15,
-            child: Image(
-              image: AppImages.menuIcon,
-            ),
-          ),
-          Positioned(
-            top: 61,
-            right: 15,
-            child: MaterialButton(
-              minWidth: 40,
-              height: 40,
-              shape: const CircleBorder(),
-              color: const Color.fromRGBO(229, 41, 62, 1),
-              child: const Image(image: AppImages.fill),
-              onPressed: () {
-                Navigator.pushNamed(context, '/bag');
-              },
-            ),
-          ),
-          Positioned(
-            top: 60,
-            right: 16,
-            child: Container(
-              width: 16,
-              height: 16,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color.fromRGBO(225, 193, 7, 1),
-              ),
-              child: const Center(
-                child: Text(
-                  '1',
-                  style: TextStyle(
-                    fontFamily: 'Lato-Black',
-                    fontWeight: FontWeight.w900,
-                    fontSize: 6,
-                    letterSpacing: 0.14,
-                  ),
-                ),
-              ),
-            ),
+      appBar: AppBar(
+        leading: const Image(
+          image: AppImages.menuIcon,
+        ),
+        actions: [
+          MaterialButton(
+            minWidth: 40,
+            height: 40,
+            shape: const CircleBorder(),
+            color: const Color.fromRGBO(229, 41, 62, 1),
+            child: const Image(image: AppImages.fill),
+            onPressed: () {
+              Navigator.pushNamed(context, '/bag');
+            },
           ),
         ],
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: ListView(
+        children: makeCategoriesWidget(),
       ),
     );
   }
