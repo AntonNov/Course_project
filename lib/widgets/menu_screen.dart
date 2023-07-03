@@ -4,6 +4,29 @@ import 'package:http/http.dart' as http;
 import '../custom_classes/category.dart';
 import '../custom_classes/images.dart';
 
+class GradientBackground extends StatelessWidget {
+  const GradientBackground({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: const Alignment(0.00, -1.00),
+          end: const Alignment(0, 1),
+          colors: [
+            Colors.black.withOpacity(0.0001),
+            Colors.black.withOpacity(0.55)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
 
@@ -24,7 +47,10 @@ class MenuScreenState extends State<MenuScreen> {
     });
   }
 
-  Widget makeCategoryWidget({required String image, required String category}) {
+  Widget makeCategoryWidget({
+    required String image,
+    required String category,
+  }) {
     return GestureDetector(
       child: Stack(
         children: [
@@ -34,13 +60,13 @@ class MenuScreenState extends State<MenuScreen> {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
+          const GradientBackground(),
           Positioned(
             bottom: 21,
             right: 22,
             child: Text(
               category,
               style: const TextStyle(
-                fontFamily: 'Lato-BlackItalic',
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w900,
                 fontSize: 26,
@@ -71,7 +97,6 @@ class MenuScreenState extends State<MenuScreen> {
       Uri.parse(
           'https://raw.githubusercontent.com/alex-shinkevich/tms_api/main/project-10/categories.json'),
     );
-
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body) as List<dynamic>;
       List<Category> categories = [];
@@ -88,7 +113,7 @@ class MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 0,
+        // toolbarHeight: 0,
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: const Image(
