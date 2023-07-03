@@ -40,7 +40,6 @@ flutter:
       fonts:
         - asset: assets/fonts/Lato/Lato-Regular.ttf
         - asset: assets/fonts/Lato/Lato-Black.ttf
-        - asset: assets/fonts/Lato/Lato-BlackItalic.ttf
         - asset: assets/fonts/Lato/Lato-Bold.ttf
         
     - family: Inter

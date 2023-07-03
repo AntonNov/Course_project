@@ -88,6 +88,9 @@ class MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 0,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: const Image(
           image: AppImages.menuIcon,
         ),
@@ -103,8 +106,6 @@ class MenuScreenState extends State<MenuScreen> {
             },
           ),
         ],
-        backgroundColor: Colors.transparent,
-        elevation: 0,
       ),
       body: ListView(
         children: makeCategoriesWidget(),

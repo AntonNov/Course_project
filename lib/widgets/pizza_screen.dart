@@ -128,11 +128,12 @@ class PizzaScreenState extends State<PizzaScreen> {
     );
   }
 
-  Widget makePizzaWidget(
-      {required String photo,
-      required String name,
-      required double priceL,
-      required double priceM}) {
+  Widget makePizzaWidget({
+    required String photo,
+    required String name,
+    required double priceL,
+    required double priceM,
+  }) {
     return Center(
       child: Stack(
         children: [
