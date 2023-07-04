@@ -7,7 +7,7 @@ abstract class AppImages {
       AssetImage('assets/images/home/chevron_right/chevron_right.png');
   static const menuIcon =
       AssetImage('assets/images/menu/menuicon/menuicon.png');
-  static const fill = AssetImage('assets/images/menu/bag/fill/fill.png');
+  static const bag = AssetImage('assets/images/menu/bag/bag.png');
   static const chevronLeft =
       AssetImage('assets/images/bag/chevron_left/chevron_left.png');
   static const bagBackground =

@@ -14,6 +14,7 @@ Pizza _$PizzaFromJson(Map<String, dynamic> json) => Pizza(
       (json['comments'] as List<dynamic>)
           .map((e) => Comment.fromJson(e as Map<String, dynamic>))
           .toList(),
+      json['description'] as String?,
     );
 
 Map<String, dynamic> _$PizzaToJson(Pizza instance) => <String, dynamic>{
@@ -22,4 +23,5 @@ Map<String, dynamic> _$PizzaToJson(Pizza instance) => <String, dynamic>{
       'price_L': instance.priceL,
       'price_M': instance.priceM,
       'comments': instance.comments,
+      'description': instance.description,
     };

@@ -47,7 +47,7 @@ class MenuScreenState extends State<MenuScreen> {
     });
   }
 
-  Widget makeCategoryWidget({
+  Widget categoryWidget({
     required String image,
     required String category,
   }) {
@@ -77,19 +77,18 @@ class MenuScreenState extends State<MenuScreen> {
         ],
       ),
       onTap: () {
-        Navigator.pushNamed(context, '/pizza');
+        Navigator.pushNamed(context, '/pizzas');
       },
     );
   }
 
-  List<Widget> makeCategoriesWidget() {
-    List<Widget> children = [];
-    for (final category in categories) {
-      children.add(
-        makeCategoryWidget(image: category.image, category: category.name),
-      );
-    }
-    return children;
+  List<Widget> categoriesWidget() {
+    return categories
+        .map(
+          (category) =>
+              categoryWidget(image: category.image, category: category.name),
+        )
+        .toList();
   }
 
   Future<List<Category>> fetchData() async {
@@ -98,12 +97,9 @@ class MenuScreenState extends State<MenuScreen> {
           'https://raw.githubusercontent.com/alex-shinkevich/tms_api/main/project-10/categories.json'),
     );
     if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body) as List<dynamic>;
-      List<Category> categories = [];
-      for (var category in jsonData) {
-        categories.add(Category.fromJson(category));
-      }
-      return categories;
+      return (jsonDecode(response.body) as List<dynamic>)
+          .map((category) => Category.fromJson(category))
+          .toList();
     } else {
       throw Exception('Failed to load data');
     }
@@ -125,7 +121,7 @@ class MenuScreenState extends State<MenuScreen> {
             height: 40,
             shape: const CircleBorder(),
             color: const Color.fromRGBO(229, 41, 62, 1),
-            child: const Image(image: AppImages.fill),
+            child: const Image(image: AppImages.bag),
             onPressed: () {
               Navigator.pushNamed(context, '/bag');
             },
@@ -133,7 +129,7 @@ class MenuScreenState extends State<MenuScreen> {
         ],
       ),
       body: ListView(
-        children: makeCategoriesWidget(),
+        children: categoriesWidget(),
       ),
     );
   }

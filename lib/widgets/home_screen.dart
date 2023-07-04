@@ -110,8 +110,8 @@ class TitleWidget extends StatelessWidget {
                 Navigator.pushNamed(context, '/menu');
               },
               child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(width: 20),
                   Text(
                     'START ORDER',
                     style: TextStyle(
@@ -121,7 +121,6 @@ class TitleWidget extends StatelessWidget {
                       letterSpacing: 0.327,
                     ),
                   ),
-                  SizedBox(width: 19),
                   Image(
                     width: 5,
                     height: 10,

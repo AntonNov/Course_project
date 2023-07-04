@@ -35,7 +35,7 @@ class BagScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(width: 71),
-                  const Image(image: AppImages.fill),
+                  const Image(image: AppImages.bag),
                   const SizedBox(width: 12),
                   const Text(
                     'Your Bag',
