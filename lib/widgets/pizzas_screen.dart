@@ -89,85 +89,90 @@ class PizzasScreenState extends State<PizzasScreen> {
     required double priceL,
     required double priceM,
   }) {
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        const PizzaBackground(),
-        SizedBox(
-          width: 138,
-          height: 255,
-          child: Column(
-            children: [
-              Image.network(
-                photo,
-                width: 123,
-                height: 123,
-                fit: BoxFit.contain,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                name,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Color.fromRGBO(11, 32, 49, 1),
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 1.253,
+    return GestureDetector(
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          const PizzaBackground(),
+          SizedBox(
+            width: 138,
+            height: 255,
+            child: Column(
+              children: [
+                Image.network(
+                  photo,
+                  width: 123,
+                  height: 123,
+                  fit: BoxFit.contain,
                 ),
-              ),
-              const SizedBox(height: 37),
-              Row(
-                children: [
-                  const Expanded(
-                    child: Text(
-                      'Size L',
-                      style: TextStyle(
+                const SizedBox(height: 8),
+                Text(
+                  name,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Color.fromRGBO(11, 32, 49, 1),
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.253,
+                  ),
+                ),
+                const SizedBox(height: 37),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        'Size L',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.64,
+                          color: Color.fromRGBO(112, 110, 123, 1),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '\$ $priceL',
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 0.64,
                         color: Color.fromRGBO(112, 110, 123, 1),
                       ),
                     ),
-                  ),
-                  Text(
-                    '\$ $priceL',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 0.64,
-                      color: Color.fromRGBO(112, 110, 123, 1),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        'Size M',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.64,
+                          color: Color.fromRGBO(112, 110, 123, 1),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Expanded(
-                    child: Text(
-                      'Size M',
-                      style: TextStyle(
+                    Text(
+                      '\$ $priceM',
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 0.64,
                         color: Color.fromRGBO(112, 110, 123, 1),
                       ),
                     ),
-                  ),
-                  Text(
-                    '\$ $priceM',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 0.64,
-                      color: Color.fromRGBO(112, 110, 123, 1),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
+      onTap: () {
+        Navigator.pushNamed(context, '/booking');
+      },
     );
   }
 }

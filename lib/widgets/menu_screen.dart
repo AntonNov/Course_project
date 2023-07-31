@@ -47,6 +47,20 @@ class MenuScreenState extends State<MenuScreen> {
     });
   }
 
+  Future<List<Category>> fetchData() async {
+    final response = await http.get(
+      Uri.parse(
+          'https://raw.githubusercontent.com/alex-shinkevich/tms_api/main/project-10/categories.json'),
+    );
+    if (response.statusCode == 200) {
+      return (jsonDecode(response.body) as List<dynamic>)
+          .map((category) => Category.fromJson(category))
+          .toList();
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
   Widget categoryWidget({
     required String image,
     required String category,
@@ -89,20 +103,6 @@ class MenuScreenState extends State<MenuScreen> {
               categoryWidget(image: category.image, category: category.name),
         )
         .toList();
-  }
-
-  Future<List<Category>> fetchData() async {
-    final response = await http.get(
-      Uri.parse(
-          'https://raw.githubusercontent.com/alex-shinkevich/tms_api/main/project-10/categories.json'),
-    );
-    if (response.statusCode == 200) {
-      return (jsonDecode(response.body) as List<dynamic>)
-          .map((category) => Category.fromJson(category))
-          .toList();
-    } else {
-      throw Exception('Failed to load data');
-    }
   }
 
   @override

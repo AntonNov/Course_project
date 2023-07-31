@@ -12,8 +12,8 @@ abstract class AppImages {
       AssetImage('assets/images/bag/chevron_left/chevron_left.png');
   static const bagBackground =
       AssetImage('assets/images/bag/background/background.png');
-  static const pizzaBackground =
-      AssetImage('assets/images/pizza/background/background.png');
   static const starGrey =
       AssetImage('assets/images/pizza/star_grey/star_grey.png');
+  static const bookingBackground =
+      AssetImage('assets/images/booking/background/background.png');
 }

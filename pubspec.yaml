@@ -1,7 +1,7 @@
 name: delivery_app
 description: Delivery app from Flutter course
 publish_to: 'none'
-version: 0.5.0
+version: 0.5.5
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   http: ^1.0.0
   json_annotation: ^4.8.1
 
@@ -18,7 +20,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.1
   json_serializable: ^6.7.0
-  build_runner: ^2.4.5
+  build_runner: 
 
 
 flutter:
@@ -31,7 +33,8 @@ flutter:
     - assets/images/bag/chevron_left/
     - assets/images/bag/background/
     - assets/images/pizza/star_grey/
-    
+    - assets/images/booking/background/
+
     - assets/fonts/
   fonts:
     - family: Lato

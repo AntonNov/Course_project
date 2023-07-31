@@ -3,6 +3,7 @@ import 'package:delivery_app/widgets/home_screen.dart';
 import 'package:delivery_app/widgets/menu_screen.dart';
 import 'package:delivery_app/widgets/pizzas_screen.dart';
 import 'package:flutter/material.dart';
+import 'booking_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
         '/menu': (context) => const MenuScreen(),
         '/bag': (context) => const BagScreen(),
         '/pizzas': (context) => const PizzasScreen(),
+        '/booking': (context) => const BookingScreen()
       },
     );
   }
