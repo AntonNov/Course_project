@@ -1,4 +1,4 @@
-import 'package:delivery_app/custom_classes/images.dart';
+import 'package:delivery_app/dataclasses/images.dart';
 import 'package:flutter/material.dart';
 
 class BagScreen extends StatelessWidget {

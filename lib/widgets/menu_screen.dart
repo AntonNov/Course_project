@@ -1,31 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../custom_classes/category.dart';
-import '../custom_classes/images.dart';
-
-class GradientBackground extends StatelessWidget {
-  const GradientBackground({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 250,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: const Alignment(0.00, -1.00),
-          end: const Alignment(0, 1),
-          colors: [
-            Colors.black.withOpacity(0.0001),
-            Colors.black.withOpacity(0.55)
-          ],
-        ),
-      ),
-    );
-  }
-}
+import '../dataclasses/category.dart';
+import '../dataclasses/images.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -130,6 +107,29 @@ class MenuScreenState extends State<MenuScreen> {
       ),
       body: ListView(
         children: categoriesWidget(),
+      ),
+    );
+  }
+}
+
+class GradientBackground extends StatelessWidget {
+  const GradientBackground({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: const Alignment(0.00, -1.00),
+          end: const Alignment(0, 1),
+          colors: [
+            Colors.black.withOpacity(0.0001),
+            Colors.black.withOpacity(0.55)
+          ],
+        ),
       ),
     );
   }

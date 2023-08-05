@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
-import 'package:delivery_app/custom_classes/pizza.dart';
+import 'package:delivery_app/dataclasses/pizza.dart';
 import 'package:flutter/material.dart';
-import '../custom_classes/images.dart';
+import '../dataclasses/images.dart';
 
 class PizzasScreen extends StatefulWidget {
   const PizzasScreen({super.key});
@@ -30,9 +31,18 @@ class PizzasScreenState extends State<PizzasScreen> {
     );
 
     if (response.statusCode == 200) {
-      return (jsonDecode(response.body) as List<dynamic>)
+      final pizzas = (jsonDecode(response.body) as List<dynamic>)
           .map((pizza) => Pizza.fromJson(pizza))
           .toList();
+      final box = await Hive.openBox<Pizza>('Pizzabox');
+      if (box.isOpen) {
+        for (final pizza in pizzas) {
+          await box.add(pizza);
+        }
+        print(box.keys);
+        print(box.values);
+      }
+      return pizzas;
     } else {
       throw Exception('Failed to load data');
     }
