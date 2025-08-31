@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import '../dataclasses/category.dart';
 import '../dataclasses/images.dart';
@@ -84,29 +85,34 @@ class MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // toolbarHeight: 0,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light, // белые иконки/текст в статусбаре
+      child: Scaffold(
+        extendBodyBehindAppBar: true, // контент заходит под статусбар
         backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: const Image(
-          image: AppImages.menuIcon,
-        ),
-        actions: [
-          MaterialButton(
-            minWidth: 40,
-            height: 40,
-            shape: const CircleBorder(),
-            color: const Color.fromRGBO(229, 41, 62, 1),
-            child: const Image(image: AppImages.bag),
-            onPressed: () {
-              Navigator.pushNamed(context, '/bag');
-            },
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: const Image(
+            image: AppImages.menuIcon,
           ),
-        ],
-      ),
-      body: ListView(
-        children: categoriesWidget(),
+          actions: [
+            MaterialButton(
+              minWidth: 40,
+              height: 40,
+              shape: const CircleBorder(),
+              color: const Color.fromRGBO(229, 41, 62, 1),
+              child: const Image(image: AppImages.bag),
+              onPressed: () {
+                Navigator.pushNamed(context, '/bag');
+              },
+            ),
+          ],
+        ),
+        body: ListView(
+          padding: EdgeInsets.zero, // убираем дефолтный верхний паддинг
+          children: categoriesWidget(),
+        ),
       ),
     );
   }
