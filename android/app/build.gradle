@@ -25,9 +25,11 @@ if (flutterVersionName == null) {
 
 android {
     compileSdk = 36
+    buildToolsVersion = "36.1.0"
     namespace = "com.example.delivery_app"
-    // Use a recent NDK that satisfies Flutter and plugin requirements.
-    ndkVersion = "28.2.13676358"
+    ndkVersion = "26.1.10909125"
+    // Use an NDK version compatible with the current Flutter/AGP toolchain.
+    ndkVersion = "26.1.10909125"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
