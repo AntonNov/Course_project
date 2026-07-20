@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '13.0'
+platform :ios, '13.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -40,5 +40,51 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+
+    if ['path_provider_foundation', 'path_provider_foundation-path_provider_foundation_privacy'].include?(target.name)
+      phase = target.new_shell_script_build_phase('Clear path_provider_foundation xattr')
+      phase.shell_script = <<~'SCRIPT'
+        if [ -d "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.framework" ]; then
+          find "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.framework" -print0 | xargs -0 xattr -c 2>/dev/null || true
+        fi
+        if [ -d "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.bundle" ]; then
+          find "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.bundle" -print0 | xargs -0 xattr -c 2>/dev/null || true
+        fi
+      SCRIPT
+      phase.show_env_vars_in_log = '0'
+      phase.run_only_for_deployment_postprocessing = '0'
+    end
+  end
+
+  # Ensure CocoaPods code signing clears xattr metadata for bundled resources.
+  frameworks_script = File.join(installer.sandbox.root, 'Target Support Files', 'Pods-Runner', 'Pods-Runner-frameworks.sh')
+  if File.exist?(frameworks_script)
+    content = File.read(frameworks_script)
+    replacement = <<~SCRIPT
+      # Signs a framework with the provided identity
+      code_sign_if_enabled() {
+        if [ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" -a "${CODE_SIGNING_REQUIRED:-}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
+          if [ -d "$1" ]; then
+            find "$1" -print0 | xargs -0 xattr -c 2>/dev/null || true
+          fi
+
+          # Use the current code_sign_identity
+          echo "Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
+          local code_sign_cmd="/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'"
+
+          if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
+            code_sign_cmd="$code_sign_cmd &"
+          fi
+          echo "$code_sign_cmd"
+          eval "$code_sign_cmd"
+        fi
+      }
+    SCRIPT
+
+if content.sub!(/# Signs a framework with the provided identity\ncode_sign_if_enabled\(\) \{[\s\S]*?\n\}\n/, replacement)
+        File.write(frameworks_script, content)
+      else
+        warn "Unable to patch #{frameworks_script} for xattr cleanup"
+      end
   end
 end
